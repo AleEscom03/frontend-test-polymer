@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html" />
+<link rel="import" href="../../bower_components/vaadin-button/vaadin-button.html"/>
+<link rel="import" href="../../bower_components/todo-list/todo-list.html"/>
+
+
+<dom-module id="frontend-test-polymer-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+      }
+      #btnAgrega{
+          background-color:#14a687;
+          color: whitesmoke;
+      }
+      #inTarea{
+        --primary-text-color: white;
+        --paper-input-container-color: white;
+        --paper-input-container-focus-color: white;
+      }
+      header {
+        text-align: center;
+      }
+      header img {
+        max-width: 70px;
+      }
+
+      header h1 {
+        font-size: 25px;
+        color: white;
+      }
+      .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        height: auto;
+        width: 80%;
+        margin: 0px auto;
+        padding-top: 40px;
+      }
+      .addItem {
+        margin: 0px auto;
+        width: 100%;
+      }
+      .addItem paper-input {
+        width: 80%;
+        display: inline-block;
+      }
+    </style>
+    <header>
+      <img src="../../assets/img/ico-logo.png" />
+      <h1>[[title]]</h1>
+    </header>
+    <section class="content">
+      <div class="addItem">
+        <paper-input id="inTarea" label="Agregar una nueva tarea"></paper-input>
+        <vaadin-button id="btnAgrega" on-click="agregarTarea">Agregar</vaadin-button>
+        <todo-list id="listaTodo"></todo-list>
+      </div>
+    </section>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class FrontendTestPolymerApp extends Polymer.Element {
+      static get is() { return 'frontend-test-polymer-app'; }
+      static get properties() {
+        return {
+          title: {
+            type: String,
+            value: "Front-End Test",
+          },
+        };
+      }
+
+      agregarTarea(){
+        this.$.listaTodo.agregarTarea(this.$.inTarea.value);
+        this.$.inTarea.value = "";
+      }
+    }
+
+    window.customElements.define(FrontendTestPolymerApp.is, FrontendTestPolymerApp);
+  </script>
+</dom-module>

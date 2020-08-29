@@ -1,0 +1,7 @@
+{
+  "name": "frontend-test-polymer",
+  "short_name": "frontend-test-polymer",
+  "description": "Prueba FrontEnd hecha en Polymer",
+  "start_url": "/",
+  "display": "standalone"
+}
